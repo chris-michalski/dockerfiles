@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Run docker
+docker run -it \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:Z \
+    -v $HOME:/home:Z \
+    -v $HOME/development:/home/development:Z \
+    -v $HOME/programs/gitkraken/data:/opt/gitkraken/data:Z \
+    -v $HOME/programs/gitkraken/config:/opt/gitkraken/config:Z \
+    -e DISPLAY=$DISPLAY \
+    -e HOME=/home \
+    -e NEWUSER=$USER \
+    gitkraken
+
