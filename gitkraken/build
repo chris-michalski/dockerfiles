@@ -1,0 +1,16 @@
+#!/bin/sh
+
+update_file="gitkraken-amd64.deb"
+docker_image="gitkraken"
+
+if [ ! -e ./$update_file ]; then
+    echo "$update_file does not exist" 1>&2
+    exit 1
+fi
+
+if docker images | grep $docker_image >> /dev/null ; then
+    docker rmi -f $docker_image
+fi
+
+time docker build -t $docker_image .
+
